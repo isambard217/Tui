@@ -1,13 +1,14 @@
 import React from 'react';
 
 // Components
-import caseForm from 'components/caseFormComponent/caseForm';
+import CaseForm from 'components/CaseForm';
 
 export default () => {
     return (
         <div>
             Im the app
-            <caseForm/>
+            <CaseForm/>
         </div>
+
     );
 };
