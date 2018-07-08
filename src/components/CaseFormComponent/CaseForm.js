@@ -8,6 +8,11 @@ class CaseForm extends Component {
 
         event.preventDefault();
 
+        // Call an action creator
+        // And save the comment
+
+        this.setState({ case: '' });
+
     };
 
     handleChange = event => {
