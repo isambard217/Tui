@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, Checkbox, Form } from 'semantic-ui-react';
 
 class CaseForm extends Component {
 
@@ -23,13 +24,19 @@ class CaseForm extends Component {
     render() {
 
         return (
-            <form onSubmit={this.handleSubmit}>
+
+            <Form onSubmit={this.handleSubmit}>
                 <h4> Add a Case </h4>
-                <textarea onChange={ this.handleChange } value = { this.state.case }/>
-                <div>
-                    <button>Submit Comment</button>
-                </div>
-            </form>
+
+                <Form.Field>
+                    <label>Add a case: </label>
+                    <input onChange={ this.handleChange } value = { this.state.case } placeholder='Add a case ' />
+                </Form.Field>
+
+                <Button>Submit A case </Button>
+
+            </Form>
+
         );
     }
 }
