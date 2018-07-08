@@ -2,11 +2,25 @@ import React, { Component } from 'react';
 
 class CaseForm extends Component {
 
+    state = { case : " "};
+
+    handleSubmit = event => {
+
+        event.preventDefault();
+
+    };
+
+    handleChange = event => {
+
+        this.setState({ case : event.target.value })
+    };
+
     render() {
+
         return (
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 <h4> Add a Case </h4>
-                <textarea />
+                <textarea onChange={this.handleChange}/>
                 <div>
                     <button>Submit Comment</button>
                 </div>
