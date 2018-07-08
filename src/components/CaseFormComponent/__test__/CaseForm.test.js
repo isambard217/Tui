@@ -10,6 +10,10 @@ beforeEach(() => {
     wrapped = mount(<CaseForm />);
 });
 
+afterEach(() => {
+    wrapped.unmount();  
+});
+
 
 it('has an input field and has a button', () => {
 
