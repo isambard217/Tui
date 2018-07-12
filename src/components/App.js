@@ -1,13 +1,14 @@
 import React from 'react';
+import 'semantic-ui-css/semantic.min.css';
+import SettingsHeader from './common/SettingsHeader';
 
-// Components
-import CaseForm from 'components/CaseFormComponent/CaseForm';
+import CaseForm from 'components/CaseForm/CaseForm';
 
 export default () => {
     return (
         <div>
-            Im the app
-            <CaseForm/>
+          <SettingsHeader/>
+          <CaseForm/>
         </div>
 
     );

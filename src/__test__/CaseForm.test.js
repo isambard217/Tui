@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 
 // Components
-import CaseForm from 'components/CaseFormComponent/CaseForm';
+import CaseForm from 'components/CaseForm/CaseForm';
 
 let wrapped;
 
