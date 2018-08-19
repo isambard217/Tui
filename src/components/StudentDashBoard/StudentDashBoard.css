@@ -1,1 +1,7 @@
-#Header { background-color: darkred; }
+.student-dashBoard{
+    height: 90%;
+}
+
+.student-menu {
+    background-color: lightblue !important;
+}
