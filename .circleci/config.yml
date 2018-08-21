@@ -45,7 +45,7 @@ jobs:
         - run:
             name: Deployment ssh script
             command: |
-              ssh -L 1122:ate5@spectre2.le.ac.uk:22 ate5@login227.lamp.le.ac.uk -N -f "./deployFrontEnd.sh"
+              ssh -v ate5@spectre2.le.ac.uk "./deployFrontEnd.sh"
 workflows:
   version: 2
   build-and-deploy:
