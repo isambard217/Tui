@@ -41,11 +41,11 @@ jobs:
       steps:
         - add_ssh_keys:
             fingerprints:
-              - d8:84:eb:4d:ef:a7:37:46:49:f9:2d:87:64:a8:db:84
+              - 84:af:b4:1d:7c:75:05:a1:45:9b:c2:e6:94:60:80:5b
         - run:
             name: Deployment ssh script
             command: |
-              ssh -v ate5@login227.lamp.le.ac.uk "./deployFrontEnd.sh"
+              ssh  -L 22:ate5@spectre2.le.ac.uk:22 ate5@login227.lamp.le.ac.uk -N -f "./deployFrontEnd.sh"
 workflows:
   version: 2
   build-and-deploy:
