@@ -1,7 +1,8 @@
 .student-dashBoard{
-    height: 90%;
+    height: 80%;
 }
 
 .student-menu {
     background-color: lightblue !important;
+    padding: 0px;
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Sidebar, Menu, Segment, Header } from 'semantic-ui-react';
 import "./StudentDashBoard.css";
-import Project from './Project';
+import ProjectBasesList from './ProjectBasesList';
 import Technique from './Technique';
 import Analysis from './Analysis';
 
@@ -10,8 +10,8 @@ class StudentDashBoard extends Component {
     super(props);
     this.state ={
       student: {name: 'Tom Hardning', account:'th32'},
-      activeMenu: 'Project',
-      activeComponent:<Project/>,
+      activeMenu: 'Projects',
+      activeComponent:<ProjectBasesList />,
     }
     
     this.onSideBarClick = this.onSideBarClick.bind(this);
@@ -21,9 +21,9 @@ class StudentDashBoard extends Component {
     event.preventDefault();
     let { activeComponent, activeMenu} = this.state;
     switch (name) {
-      case 'Project':
-        activeMenu = 'Project';
-        activeComponent = <Project/> ;
+      case 'Projects':
+        activeMenu = 'Projects';
+        activeComponent = <ProjectBasesList /> ;
         break;
       case 'Technique':
         activeMenu ='Technique';
@@ -34,8 +34,8 @@ class StudentDashBoard extends Component {
         activeComponent=  <Analysis />;
         break;
       default:
-        activeMenu = 'Project';
-        activeComponent = <Project/> ;
+        activeMenu = 'ProjectBase';
+        activeComponent = <ProjectBasesList /> ;
     }
     
     this.setState({activeMenu, activeComponent});
@@ -45,13 +45,13 @@ class StudentDashBoard extends Component {
     const { onSideBarClick } = this;
     const { activeComponent, activeMenu } = this.state;
     return (
-      <Grid className='two column center aligned top aligned equal width student-dashBoard' container>
+      <Grid className='center two column aligned top aligned student-dashBoard' container>
         <Sidebar.Pushable as={Segment}>
-          <Grid.Column>
+          <Grid.Column width={4}>
             <Sidebar as={Menu} animation='overlay' icon='labeled' vertical visible width='thin' className='student-menu'>
               <Menu.Item
                 as='a'
-                name='Project'
+                name='Projects'
                 icon='home'
                 onClick={onSideBarClick}
               />
@@ -69,14 +69,13 @@ class StudentDashBoard extends Component {
               />
             </Sidebar>
           </Grid.Column>
-          <Grid.Column>
+          
             <Sidebar.Pusher>
-              <Segment basic>
-                <Header as='h3'>{activeMenu}</Header>
+              <Grid.Column width={12}>
+                <Header>{activeMenu}</Header>
                 {activeComponent}
-              </Segment>
+              </Grid.Column>
             </Sidebar.Pusher>
-          </Grid.Column>
         </Sidebar.Pushable>
       </Grid>
     );

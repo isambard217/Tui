@@ -35,3 +35,25 @@ jobs:
 
       # run tests!
       - run: yarn test
+  deploy:
+      machine:
+        enabled: true
+      steps:
+        - add_ssh_keys:
+            fingerprints:
+              -
+        - run:
+            name: Deployment ssh script
+            command: |
+              ssh -v ate5@login227.lamp.le.ac.uk "./deployFrontEnd.sh"
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master

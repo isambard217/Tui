@@ -1,6 +1,7 @@
 .main-header{
     background-color: antiquewhite;
     height: 10%;
+    font-size: xx-small;
     padding: 0px;
     margin-top:10px;
 }
@@ -8,3 +9,4 @@
 .student-name{
     background-color: lightblue !important;
 }
+
