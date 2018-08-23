@@ -5,12 +5,14 @@
   "dependencies": {
     "ajv": "^6.5.3",
     "axios": "^0.18.0",
+    "lodash": "^4.17.10",
     "react": "^16.4.1",
     "react-avatar": "^3.2.0",
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4",
     "semantic-ui-css": "^2.3.3",
-    "semantic-ui-react": "^0.82.0"
+    "semantic-ui-react": "^0.82.0",
+    "swagger-client": "^3.8.14"
   },
   "scripts": {
     "start": "react-scripts start",
