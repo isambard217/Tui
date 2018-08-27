@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Grid, Sidebar, Menu, Segment, Header } from 'semantic-ui-react';
 import "./StudentDashBoard.css";
 import ProjectBasesList from './ProjectBasesList';
-import Technique from './Technique';
+import TechniquesList from './TechniquesList';
 import Analysis from './Analysis';
 
 class StudentDashBoard extends Component {
@@ -27,7 +27,7 @@ class StudentDashBoard extends Component {
         break;
       case 'Technique':
         activeMenu ='Technique';
-        activeComponent=  <Technique/>;
+        activeComponent=  <TechniquesList />;
         break;
       case 'Request Analysis':
         activeMenu ='Request Analysis';
