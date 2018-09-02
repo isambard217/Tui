@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Accordion, Icon } from 'semantic-ui-react';
 import Swagger from 'swagger-client';
 import _ from 'lodash';
+import getServerBaseUrl from '../Api/ApiBaseUrl';
 import './techniquesList.css';
 
 class TechniquesList extends React.Component{
@@ -14,14 +15,15 @@ class TechniquesList extends React.Component{
     this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount(){
-    const serverUrl = JSON.stringify(window.location).includes('localhost') ?
-      'http://localhost:8080/v2/api-docs' : 'https://www227.lamp.le.ac.uk/v2/api-docs';
-    Swagger(serverUrl)
+    const serverUrl = getServerBaseUrl();
+    const swggerApiSpecsUrl = `${serverUrl}/v2/api-docs`;
+    Swagger(swggerApiSpecsUrl)
       .then(client =>{
-        return client.apis.techniques.listUsingGET();
+        const auth = window.localStorage.getItem('auth');
+        return client.apis.techniques.listUsingGET({ auth });
       })
       .then(({ body }) => this.setState({ techniques: body }))
-      .catch(error => console.log('could not get api client' + error.toString()));
+      .catch(error => console.log('could not get Api client' + error.toString()));
   }
   
   handleClick(event, titleProps){
@@ -35,12 +37,12 @@ class TechniquesList extends React.Component{
   render(){
     const { techniques, activeIndex } = this.state;
     return (
-      <Grid className='one column justified top aligned techniques'>
+      <Grid className='one column justified top aligned' container>
         <Grid.Column width={16}>
           <Accordion fluid styled>
             {
               _.map(techniques, technique => (
-                <Grid.Row key={technique.id}>
+                <Grid.Row className='techniques' key={technique.id}>
                   <Accordion.Title active={activeIndex === technique.id} index={technique.id} onClick={this.handleClick}>
                     <Icon name='dropdown'/>
                     {technique.name}

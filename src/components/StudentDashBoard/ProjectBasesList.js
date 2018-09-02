@@ -15,13 +15,14 @@ class ProjectBasesList extends React.Component {
   
   componentDidMount(){
     const serverUrl = JSON.stringify(window.location).includes('localhost') ?
-      'http://localhost:8080/v2/api-docs' : 'https://www227.lamp.le.ac.uk/v2/api-docs';
+      'http://localhost:8080/v2/api-docs' : 'https://www227.lamp.le.ac.uk/v2/Api-docs';
     Swagger(serverUrl)
       .then(client =>{
-       return client.apis.templates.getTemplatesUsingGET();
+        const auth = window.localStorage.getItem('auth');
+       return client.apis.templates.getTemplatesUsingGET({ auth });
       })
       .then(({ body }) => this.setState({ projects: body }))
-      .catch(error => console.log('could not get api client'));
+      .catch(error => console.log('could not get Api client'));
   }
   
   render() {

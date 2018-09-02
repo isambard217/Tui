@@ -1,0 +1,16 @@
+.fifty_percent_height {
+    height: 50%;
+}
+
+.max_available{
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.fifty_percent_width{
+    width: 50%;
+}
+
+.center_align_vertically{
+    vertical-align: center!important;
+}
