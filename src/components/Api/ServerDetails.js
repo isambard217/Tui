@@ -1,7 +1,7 @@
 const ServersDetails = {
   STAGING: {
-    HOST: 'https://www227.lamp.le.ac.uk',
-    PORT: '8080',
+    HOST: 'http://www227.lamp.le.ac.uk',
+    PORT: '80',
   },
   DEVELOPMENT: {
     HOST: 'http://localhost',

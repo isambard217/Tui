@@ -19,7 +19,7 @@ export default function login({ userName, password }) {
     if (_.trim(password) === '') {
       return reject('password should not be empty string');
     }
-    return axios.post(`${SERVER_BASE_URL}/login`,
+    return axios.post(`${SERVER_BASE_URL}/v2/api/login`,
       new User(userName, password))
       .then(response => resolve(response.data))
       .catch(error => reject(error));
