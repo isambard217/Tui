@@ -1,2 +1,2 @@
-import login from './Authentication';
-export default login;
+import getServerBaseUrl from './api';
+export default getServerBaseUrl

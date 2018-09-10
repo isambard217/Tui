@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Accordion, Icon } from 'semantic-ui-react';
 import Swagger from 'swagger-client';
 import _ from 'lodash';
-import getServerBaseUrl from '../Api/ApiBaseUrl';
+import getServerBaseUrl from '../Api';
 import './techniquesList.css';
 
 class TechniquesList extends React.Component{

@@ -1,9 +1,10 @@
 import React from 'react';
+import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import _ from 'lodash';
 import 'semantic-ui-css/semantic.min.css';
-import login from '../Api';
+import getServerBaseUrl from '../Api';
 import LoginForm from '../accounts/LoginForm/LoginForm';
 import StudentDashBoard from "../StudentDashBoard/StudentDashBoard";
 class App extends React.Component {
@@ -31,10 +32,15 @@ class App extends React.Component {
   }
   authenticate(user) {
     const { history } = this.props;
-    login(user)
-      .then((authToken) => {
+    const serverUrl = getServerBaseUrl();
+    const apiClient = axios.create({
+      baseURL: serverUrl,
+    });
+    apiClient.defaults.headers.post['Content-Type'] = 'application/json';
+    apiClient.post('/v2/api/login', user)
+      .then(({ data }) => {
         this.setState({ isAuthenticated: true });
-        window.localStorage.setItem('auth', authToken);
+        window.localStorage.setItem('auth',data);
         history.push('student_dash_board');
         window.location.reload();
       })
