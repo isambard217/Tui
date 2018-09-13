@@ -32,7 +32,8 @@ class App extends React.Component {
   }
   authenticate(user) {
     const { history } = this.props;
-    const serverUrl = getServerBaseUrl();
+    let serverUrl = getServerBaseUrl();
+    serverUrl = 'https://www227.lamp.le.ac.uk';
     const apiClient = axios.create({
       baseURL: serverUrl,
     });
