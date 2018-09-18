@@ -15,7 +15,7 @@ class ProjectBasesList extends React.Component {
   
   componentDidMount(){
     const serverUrl = JSON.stringify(window.location).includes('localhost') ?
-      'http://localhost:8080/v2/api-docs' : 'https://www227.lamp.le.ac.uk/v2/Api-docs';
+      'http://localhost:8080/v2/api-docs' : 'https://www227.lamp.le.ac.uk/v2/api-docs';
     Swagger(serverUrl)
       .then(client =>{
         const auth = window.localStorage.getItem('auth');

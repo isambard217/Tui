@@ -17,7 +17,7 @@ export default function getServerBaseUrl() {
   const location = JSON.stringify(window.location);
   const { DEVELOPMENT, STAGING, PRODUCTION } = ServersDetails;
   if (!location.includes('localhost')) {
-    return `${STAGING.HOST}:${STAGING.PORT}`;
+    return STAGING.HOST;
   }
   
   if (location.includes('localhost')) {

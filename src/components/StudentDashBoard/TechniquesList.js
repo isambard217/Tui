@@ -18,9 +18,9 @@ class TechniquesList extends React.Component{
     const serverUrl = getServerBaseUrl();
     const swggerApiSpecsUrl = `${serverUrl}/v2/api-docs`;
     Swagger(swggerApiSpecsUrl)
-      .then(client =>{
+      .then(client => {
         const auth = window.localStorage.getItem('auth');
-        return client.apis.techniques.listUsingGET({ auth });
+        return client.apis.techniques.listUsingGET_1({ auth });
       })
       .then(({ body }) => this.setState({ techniques: body }))
       .catch(error => console.log('could not get Api client' + error.toString()));
