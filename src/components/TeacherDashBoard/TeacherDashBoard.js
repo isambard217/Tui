@@ -44,7 +44,7 @@ class TeacherDashBoard extends React.Component {
             fullName={`${user.firstName} ${user.lastName}`}
             userName={(typeof user.sub === 'undefined') ? 'UnKnown userName' : user.sub}
             signOutHandler={signOutHandler}
-            message={<Header as='h2' className='orange'> The Trance Admin Panel</Header>}
+            message={<Header as='h2' className='orange'> The Trace Admin Panel</Header>}
           />
           <Divider />
           <AdminMainMenu onMenuItemClickHandler={menuItemClickHandler} />
