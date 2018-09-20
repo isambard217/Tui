@@ -1,2 +1,3 @@
 import getServerBaseUrl from './api';
-export default getServerBaseUrl
+
+export default getServerBaseUrl;

@@ -1,13 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Form, Grid, Segment } from 'semantic-ui-react';
 import './loginForm.css';
+
 class LoginForm extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       userName: '',
       password: '',
-    }
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -57,5 +59,7 @@ class LoginForm extends React.Component {
     );
   }
 }
-
+LoginForm.propTypes = {
+  signIn: PropTypes.func.isRequired,
+};
 export default LoginForm;

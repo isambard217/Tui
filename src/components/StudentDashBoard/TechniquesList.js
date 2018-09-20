@@ -5,36 +5,34 @@ import _ from 'lodash';
 import getServerBaseUrl from '../Api';
 import './techniquesList.css';
 
-class TechniquesList extends React.Component{
-  constructor(props){
+class TechniquesList extends React.Component {
+  constructor(props) {
     super(props);
-    this.state={
+    this.state = {
       techniques: [],
       activeIndex: 0,
     };
     this.handleClick = this.handleClick.bind(this);
   }
-  componentDidMount(){
+  componentDidMount() {
     const serverUrl = getServerBaseUrl();
     const swggerApiSpecsUrl = `${serverUrl}/v2/api-docs`;
     Swagger(swggerApiSpecsUrl)
-      .then(client => {
+      .then((client) => {
         const auth = window.localStorage.getItem('auth');
         return client.apis.techniques.listUsingGET_1({ auth });
       })
       .then(({ body }) => this.setState({ techniques: body }))
-      .catch(error => console.log('could not get Api client' + error.toString()));
+      .catch(error => console.log(`could not get Api client${error.toString()}`));
   }
-  
-  handleClick(event, titleProps){
+  handleClick(event, titleProps) {
     const { index } = titleProps;
     const { activeIndex } = this.state;
     const newIndex = activeIndex === index ? -1 : index;
-    
+
     this.setState({ activeIndex: newIndex });
   }
-  
-  render(){
+  render() {
     const { techniques, activeIndex } = this.state;
     return (
       <Grid className='one column justified top aligned' container>
@@ -43,8 +41,12 @@ class TechniquesList extends React.Component{
             {
               _.map(techniques, technique => (
                 <Grid.Row className='techniques' key={technique.id}>
-                  <Accordion.Title active={activeIndex === technique.id} index={technique.id} onClick={this.handleClick}>
-                    <Icon name='dropdown'/>
+                  <Accordion.Title
+                    active={activeIndex === technique.id}
+                    index={technique.id}
+                    onClick={this.handleClick}
+                  >
+                    <Icon name='dropdown' />
                     {technique.name}
                   </Accordion.Title>
                   <Accordion.Content active={activeIndex === technique.id}>

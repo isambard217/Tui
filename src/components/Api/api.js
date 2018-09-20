@@ -19,7 +19,7 @@ export default function getServerBaseUrl() {
   if (!location.includes('localhost')) {
     return STAGING.HOST;
   }
-  
+
   if (location.includes('localhost')) {
     return `${DEVELOPMENT.HOST}:${DEVELOPMENT.PORT}`;
   }
