@@ -54,7 +54,7 @@ class StudentDashBoard extends Component {
       <Grid className='center two column aligned top aligned student-dashBoard' container>
         <AppNavigationHeader
           fullName={`${user.firstName} ${user.lastName}`}
-          userName={user.sub}
+          userName={(typeof user.sub === 'undefined') ? 'Unknown username' : user.sub}
           signOutHandler={signOutHandler}
         />
         <Sidebar.Pushable as={Segment}>
