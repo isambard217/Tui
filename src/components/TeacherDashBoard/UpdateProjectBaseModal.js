@@ -23,14 +23,11 @@ class UpdateProjectBaseModal extends React.Component {
   render() {
     const { name, description } = this.state;
     const { trigger, id, isOpen } = this.props;
-    const modaleHeader = (<Header as='h2'>
-      {`Update Project Title: ${name}`}
-    </Header>);
     return (
       <Modal
         open={isOpen}
         trigger={trigger}
-        header={modaleHeader}
+        header={<Header as='h2'>{`Update Project Title: ${name}`}</Header>}
         content={<Form>
           <Form.Field>
             <Label className='tiny'>Title</Label>

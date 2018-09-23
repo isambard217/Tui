@@ -23,8 +23,8 @@ class ProjectBaseAdminView extends React.Component {
   openCloseUpdateModal(event) {
     event.preventDefault();
     const { isUpdateModalOpen } = this.state;
-    if (isUpdateModalOpen) { return this.setState({ isSelectProjectModalOpen: false }); }
-    return this.setState({ isSelectProjectModalOpen: true });
+    if (isUpdateModalOpen) { return this.setState({ isUpdateModalOpen: false }); }
+    return this.setState({ isUpdateModalOpen: true });
   }
   openCloseDeleteModal(event) {
     event.preventDefault();
