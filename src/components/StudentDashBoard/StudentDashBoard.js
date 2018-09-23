@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Sidebar, Menu, Segment, Header } from 'semantic-ui-react';
 import './StudentDashBoard.css';
-import ProjectBasesList from '../common/ProjectBasesList';
+import ProjectBasesList from './ProjectBasesList';
 import TechniquesList from './TechniquesList';
 import Analysis from './Analysis';
 import AppNavigationHeader from '../common/AppNavigationHeader';
@@ -12,7 +12,7 @@ class StudentDashBoard extends Component {
     super(props);
     this.state = {
       activeMenu: 'Projects',
-      activeComponent: <ProjectBasesList />,
+      activeComponent: <ProjectBasesList getUserDetailsHandler={props.getUserDetailsHandler} />,
       user: {},
     };
 
@@ -27,10 +27,13 @@ class StudentDashBoard extends Component {
   onSideBarClick(event, { name }) {
     event.preventDefault();
     let { activeComponent, activeMenu } = this.state;
+    const { getUserDetailsHandler } = this.props;
     switch (name) {
       case 'Projects':
         activeMenu = 'Projects';
-        activeComponent = <ProjectBasesList />;
+        activeComponent = (<ProjectBasesList
+          getUserDetailsHandler={getUserDetailsHandler}
+        />);
         break;
       case 'Technique':
         activeMenu = 'Technique';
@@ -42,7 +45,7 @@ class StudentDashBoard extends Component {
         break;
       default:
         activeMenu = 'ProjectBase';
-        activeComponent = <ProjectBasesList />;
+        activeComponent = <ProjectBasesList getUserDetailsHandler={getUserDetailsHandler} />;
     }
     this.setState({ activeMenu, activeComponent });
   }

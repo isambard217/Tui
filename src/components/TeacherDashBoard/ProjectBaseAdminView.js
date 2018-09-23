@@ -23,8 +23,8 @@ class ProjectBaseAdminView extends React.Component {
   openCloseUpdateModal(event) {
     event.preventDefault();
     const { isUpdateModalOpen } = this.state;
-    if (isUpdateModalOpen) { return this.setState({ isUpdateModalOpen: false }); }
-    return this.setState({ isUpdateModalOpen: true });
+    if (isUpdateModalOpen) { return this.setState({ isSelectProjectModalOpen: false }); }
+    return this.setState({ isSelectProjectModalOpen: true });
   }
   openCloseDeleteModal(event) {
     event.preventDefault();
@@ -99,8 +99,7 @@ class ProjectBaseAdminView extends React.Component {
         ProjectBaseName={name}
         ProjectDescription={description}
         buttons={this.createUpdateDeleteModals()}
-      />
-    );
+      />);
   }
 }
 ProjectBaseAdminView.propTypes = {
