@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import AppNavigationHeader from '../common';
 import AdminMainMenu from './AdminMainMenu';
 import ProjectBasesListAdminView from './ProjectBasesListAdminView';
+import UsersEvents from './UsersEvents';
 
 class TeacherDashBoard extends React.Component {
   constructor(props) {
@@ -25,8 +26,11 @@ class TeacherDashBoard extends React.Component {
     event.preventDefault();
     let activeView = <Grid />;
     switch (children) {
-      case 'projects':
+      case 'Projects':
         activeView = <ProjectBasesListAdminView />;
+        break;
+      case 'Events':
+        activeView = <UsersEvents />;
         break;
       default:
         activeView = <ProjectBasesListAdminView />;
