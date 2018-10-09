@@ -15,6 +15,9 @@ const AdminMainMenu = (props) => {
               <Dropdown.Menu>
                 <Dropdown.Item
                   onClick={onMenuItemClickHandler}
+                >Student</Dropdown.Item>
+                <Dropdown.Item
+                  onClick={onMenuItemClickHandler}
                 >Project</Dropdown.Item>
                 <Dropdown.Item
                   onClick={onMenuItemClickHandler}
