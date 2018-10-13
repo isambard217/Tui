@@ -2,12 +2,14 @@ import Swagger from 'swagger-client';
 import React from 'react';
 import { Grid, Form, Checkbox, Button } from 'semantic-ui-react';
 import User from '../domain/User';
+import ApiUsersList from './ApiUsersList';
 
-class AddNewSystemUser extends React.Component {
+class ManagingProjects extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       newUser: new User(),
+      apiUsers: [],
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -36,7 +38,7 @@ class AddNewSystemUser extends React.Component {
   }
   render() {
     const { onChange, onSubmit } = this;
-    return (<Grid container>
+    return (<Grid container className='one column'>
       <Form onSubmit={onSubmit}>
         <Form.Input
           name='userName'
@@ -84,7 +86,8 @@ class AddNewSystemUser extends React.Component {
         </Form.Field>
         <Button type='submit'>Submit</Button>
       </Form>
+      <ApiUsersList />
     </Grid>);
   }
 }
-export default AddNewSystemUser;
+export default ManagingProjects;

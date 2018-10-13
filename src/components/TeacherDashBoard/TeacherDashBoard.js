@@ -5,7 +5,7 @@ import AppNavigationHeader from '../common';
 import AdminMainMenu from './AdminMainMenu';
 import ProjectBasesListAdminView from './ProjectBasesListAdminView';
 import UsersEvents from './UsersEvents';
-import AddNewSystemUser from './AddNewSystemUser';
+import ManagingProjects from './ManagingProjects';
 
 class TeacherDashBoard extends React.Component {
   constructor(props) {
@@ -25,7 +25,6 @@ class TeacherDashBoard extends React.Component {
   }
   menuItemClickHandler(event, { children }) {
     event.preventDefault();
-    console.log(children);
     let activeView = <Grid />;
     switch (children) {
       case 'Projects':
@@ -35,7 +34,7 @@ class TeacherDashBoard extends React.Component {
         activeView = <UsersEvents />;
         break;
       case 'Student':
-        activeView = <AddNewSystemUser />;
+        activeView = <ManagingProjects />;
         break;
       default:
         activeView = <ProjectBasesListAdminView />;
