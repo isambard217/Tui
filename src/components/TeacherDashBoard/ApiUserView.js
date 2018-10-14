@@ -53,7 +53,7 @@ class ApiUserView extends React.Component {
     return (<Card className={(fileName === 'noFile') ? 'red' : 'green'}>
       <Card.Content>
         <Card.Header>{templateName}</Card.Header>
-        <Card.Meta>{`User is Identified by university accout: ${userName}`}</Card.Meta>
+        <Card.Meta>{`User is Identified by university account: ${userName}`}</Card.Meta>
         <Card.Description>{`£${budget}`}</Card.Description>
         {fileViewTorender}
       </Card.Content>

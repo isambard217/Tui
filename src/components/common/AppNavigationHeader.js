@@ -33,6 +33,6 @@ AppNavigationHeader.propTypes = {
   message: PropTypes.node,
 };
 AppNavigationHeader.defaultProps = {
-  message: <Header as='h4'> £1,500 credits remaining </Header>,
+  message: <Header as='h4' className='blue'>Wish All of You Good Luck ... Good Luck ..</Header>,
 };
 export default AppNavigationHeader;
