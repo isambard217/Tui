@@ -26,12 +26,7 @@ class UserEvent extends React.Component {
         const auth = window.localStorage.getItem('auth');
         return client.apis['teacher-events'].updateEventUsingPUT({ auth, eventId: id });
       })
-      .then(({ body }) => {
-        const { userEvents } = this.state;
-        const eventToUpdate = _.filter(userEvents, userEvent => userEvent.id === body.id);
-        eventToUpdate.handled = true;
-        return this.setState({ userEvents });
-      })
+      .then(() => { this.props.reloadUsers(); })
       .catch(error => console.log(error));
   }
   render() {
@@ -63,5 +58,6 @@ class UserEvent extends React.Component {
 UserEvent.propTypes = {
   userName: PropTypes.string.isRequired,
   userEvents: PropTypes.arrayOf(PropTypes.object).isRequired,
+  reloadUsers: PropTypes.func.isRequired,
 };
 export default UserEvent;

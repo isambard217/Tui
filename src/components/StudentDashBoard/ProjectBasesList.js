@@ -6,6 +6,7 @@ import { Grid } from 'semantic-ui-react';
 import './projectBasesList.css';
 import ProjectBaseStudentView from './ProjectBaseStudentView';
 import ProjectEntity from '../domain/ProjectEntity';
+import Analysis from './Analysis';
 
 class ProjectBasesList extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class ProjectBasesList extends React.Component {
       projects: [],
       isSelectModalOpen: false,
       isOneProject: false,
+      apiUserId: -1,
     };
     this.selectProjectHandler = this.selectProjectHandler.bind(this);
     this.reloadProjectBases = this.reloadProjectBases.bind(this);
@@ -34,9 +36,9 @@ class ProjectBasesList extends React.Component {
           const project = body[0];
           projects.push(new ProjectEntity(project.id, project.template.name,
             project.template.description, project.budget, project.startTime));
-          return this.setState({ projects, isOneProject: true });
+          return this.setState({ projects, isOneProject: true, apiUserId });
         }
-        return this.setState({ projects: body, isOneProject: false });
+        return this.setState({ projects: body, isOneProject: false, apiUserId });
       })
       .catch(() => console.log('could not get Api client'));
   }
@@ -74,9 +76,9 @@ class ProjectBasesList extends React.Component {
       .catch(() => console.log('could not get Api client'));
   }
   render() {
-    const { projects } = this.state;
+    const { projects, apiUserId } = this.state;
     return (
-      <Grid className='left aligned equal width fluid' container columns={3}>
+      <Grid className='left aligned equal width fluid' container columns={1}>
         {
           _.map(projects, project => (
             <ProjectBaseStudentView
@@ -93,6 +95,7 @@ class ProjectBasesList extends React.Component {
             />
           ))
         }
+        <Analysis apiUserId={apiUserId} />
       </Grid>
     );
   }

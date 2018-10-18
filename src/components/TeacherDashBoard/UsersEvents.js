@@ -10,8 +10,20 @@ class UsersEvents extends React.Component {
     this.state = {
       users: [],
     };
+    this.reloadUsers = this.reloadUsers.bind(this);
   }
   componentDidMount() {
+    const serverUrl = JSON.stringify(window.location).includes('localhost') ?
+      'http://localhost:8080/v2/api-docs' : 'https://www227.lamp.le.ac.uk/v2/api-docs';
+    Swagger(serverUrl)
+      .then((client) => {
+        const auth = window.localStorage.getItem('auth');
+        return client.apis['api-users'].listUsingGET({ auth });
+      })
+      .then(({ body }) => this.setState({ users: body }))
+      .catch(error => console.log(error));
+  }
+  reloadUsers() {
     const serverUrl = JSON.stringify(window.location).includes('localhost') ?
       'http://localhost:8080/v2/api-docs' : 'https://www227.lamp.le.ac.uk/v2/api-docs';
     Swagger(serverUrl)
@@ -32,6 +44,7 @@ class UsersEvents extends React.Component {
               <UserEvent
                 userName={user.userName}
                 userEvents={user.events}
+                reloadUsers={this.reloadUsers}
               />
             </Grid.Row>))
         }

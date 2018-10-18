@@ -53,6 +53,7 @@ class TechniquesList extends React.Component {
                     <p>
                       {technique.briefDescription}
                     </p>
+                    <div>{`cost=£${technique.cost}`}</div>
                   </Accordion.Content>
                 </Grid.Row>
               ))

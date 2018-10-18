@@ -10,6 +10,7 @@ class ApiUsersList extends React.Component {
     this.state = {
       apiUsers: [],
     };
+    this.reloadUsers = this.reloadUsers.bind(this);
   }
   componentDidMount() {
     const serverUrl = JSON.stringify(window.location).includes('localhost') ?
@@ -19,9 +20,18 @@ class ApiUsersList extends React.Component {
         const auth = window.localStorage.getItem('auth');
         return client.apis['api-users'].listUsingGET({ auth });
       })
-      .then(({ body }) => {
-        this.setState({ apiUsers: body });
+      .then(({ body }) => this.setState({ apiUsers: body }))
+      .catch(error => Promise.reject(error));
+  }
+  reloadUsers() {
+    const serverUrl = JSON.stringify(window.location).includes('localhost') ?
+      'http://localhost:8080/v2/api-docs' : 'https://www227.lamp.le.ac.uk/v2/api-docs';
+    Swagger(serverUrl)
+      .then((client) => {
+        const auth = window.localStorage.getItem('auth');
+        return client.apis['api-users'].listUsingGET({ auth });
       })
+      .then(({ body }) => this.setState({ apiUsers: body }))
       .catch(error => Promise.reject(error));
   }
   render() {
@@ -37,7 +47,7 @@ class ApiUsersList extends React.Component {
             const { template } = project;
             templateName = template.name;
             budget = project.budget;
-            fileName = _.isUndefined(project.fileName) ? fileName : project.fileName;
+            fileName = _.isNull(project.fileName) ? 'uploadFile' : project.fileName;
           }
           return (<ApiUserView
             userName={apiUser.userName}
@@ -46,6 +56,7 @@ class ApiUsersList extends React.Component {
             key={apiUser.id}
             apiUserId={apiUser.id}
             fileName={fileName}
+            reloadUsers={this.reloadUsers}
           />);
         })
       }

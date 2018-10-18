@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'semantic-ui-react';
 import Dropzone from 'react-dropzone';
-import _ from 'lodash';
 
 class ApiUserView extends React.Component {
   constructor(props) {
@@ -20,18 +19,8 @@ class ApiUserView extends React.Component {
     this.onDrop = this.onDrop.bind(this);
   }
   componentDidMount() {
-    const {
-      apiUserId,
-      userName,
-      templateName,
-      budget,
-      fileName }
-    = this.props;
-    this.setState({ apiUserId,
-      templateName,
-      userName,
-      budget,
-      fileName });
+    const { apiUserId, userName, templateName, budget, fileName } = this.props;
+    this.setState({ apiUserId, templateName, userName, budget, fileName });
   }
   onDrop(acceptedFiles) {
     const { apiUserId } = this.state;
@@ -43,12 +32,12 @@ class ApiUserView extends React.Component {
         return client.apis['file-upload-controller']
           .handleFileUploadUsingPOST({ file: acceptedFiles[0], auth, apiUserId });
       })
-      .then(({ body }) => console.log(body))
+      .then(() => this.props.reloadUsers())
       .catch(error => console.log(error));
   }
   render() {
     const { templateName, userName, budget, fileName } = this.state;
-    const fileViewTorender = _.isNull(fileName) ? <Dropzone onDrop={this.onDrop} /> :
+    const fileViewTorender = fileName === 'uploadFile' ? <Dropzone onDrop={this.onDrop} /> :
     fileName;
     return (<Card className={(fileName === 'noFile') ? 'red' : 'green'}>
       <Card.Content>
@@ -66,5 +55,6 @@ ApiUserView.propTypes = {
   userName: PropTypes.string.isRequired,
   budget: PropTypes.number.isRequired,
   apiUserId: PropTypes.number.isRequired,
+  reloadUsers: PropTypes.func.isRequired,
 };
 export default ApiUserView;
